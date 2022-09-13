@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React, { useState, useEffect } from 'react';
+import DriverCards from './driverCards/DriverCards';
+
 
 function App() {
+
+  const [dailyDrivers, setDailyDrivers] = useState('')
+
+  const marioData = fetch('https://mario-kart-tour-api.herokuapp.com/api/v1/drivers/daily_selects', {
+    method: "GET",
+    headers: { "Content-type": "application/json;charset=UTF-8" }
+  })
+    .then(response => response.json())
+
+  useEffect(() => {
+    marioData.then(data => setDailyDrivers(data))
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>hello</p>
+      <DriverCards driverData={dailyDrivers} />
     </div>
   );
 }
