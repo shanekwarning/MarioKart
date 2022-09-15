@@ -20,7 +20,8 @@ function App() {
 
   return (
     <div className="App">
-      <p>hello</p>
+      <h1>Drivers Start Your Engines</h1>
+      <h2>Today's Drivers Are</h2>
       <DriverCards driverData={dailyDrivers} />
     </div>
   );
